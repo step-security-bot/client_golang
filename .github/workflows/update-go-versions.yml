@@ -6,8 +6,14 @@ on:
   schedule:
     - cron: '0 0 1 * *'
 
+permissions:
+  contents: read
+
 jobs:
   update-go-versions:
+    permissions:
+      contents: write  # for peter-evans/create-pull-request to create branch
+      pull-requests: write  # for peter-evans/create-pull-request to create a PR
     name: Update Go Versions and Generate Tests
     runs-on: ubuntu-latest
 

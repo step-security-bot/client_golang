@@ -12,7 +12,7 @@
 #    curl $ip:$port/metrics
 
 # Builder image, where we build the example.
-FROM golang:1 AS builder
+FROM golang:1@sha256:574185e5c6b9d09873f455a7c205ea0514bfd99738c5dc7750196403a44ed4b7 AS builder
 WORKDIR /go/src/github.com/prometheus/client_golang
 COPY . .
 WORKDIR /go/src/github.com/prometheus/client_golang/prometheus
@@ -25,7 +25,7 @@ WORKDIR /go/src/github.com/prometheus/client_golang/examples/gocollector
 RUN CGO_ENABLED=0 GOOS=linux go build -a -tags netgo -ldflags '-w'
 
 # Final image.
-FROM quay.io/prometheus/busybox:latest
+FROM quay.io/prometheus/busybox:latest@sha256:dfa54ef35e438b9e71ac5549159074576b6382f95ce1a434088e05fd6b730bc4
 LABEL maintainer="The Prometheus Authors <prometheus-developers@googlegroups.com>"
 COPY --from=builder /go/src/github.com/prometheus/client_golang/examples/random \
     /go/src/github.com/prometheus/client_golang/examples/simple \

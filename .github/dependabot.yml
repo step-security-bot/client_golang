@@ -24,3 +24,18 @@ updates:
       github-actions:
         patterns:
           - "*"
+
+  - package-ecosystem: gomod
+    directory: /.bingo
+    schedule:
+      interval: daily
+
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: daily
+
+  - package-ecosystem: gomod
+    directory: /tutorials/whatsup
+    schedule:
+      interval: daily
